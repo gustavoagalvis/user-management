@@ -1,0 +1,26 @@
+
+<form name="form" (ngSubmit)="Login()" #f="ngForm">
+  <div>
+    <label>DEBES INICIAR SESIÓN PARA CONTINUAR</label>
+  </div>
+  <div>
+    <div>
+      <input type="text" placeholder="usuario" name="userName" [(ngModel)]="model.userName" required>
+    </div>
+    <div>
+       <input ID="txtPassword" type="password"  placeholder="Password" name="password"  [(ngModel)]="model.password" required>
+    </div>
+  </div>
+  <br>
+  <div>
+    <button type="submit">Enviar</button>
+    <br />
+  </div>
+
+  <div>
+    <div [hidden]="!showErrors">
+      <label>{{errorMessage}}</label>
+      <br />
+    </div>
+  </div>
+</form>

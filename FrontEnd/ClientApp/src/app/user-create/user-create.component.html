@@ -1,0 +1,81 @@
+
+    <div>
+      <div>
+        <h2>Crear usuario</h2>
+          <form name="form" (ngSubmit)="onCreateUser()" #f="ngForm">
+            <table>
+              <tr>
+                <td>Username</td>
+                <td>
+                  <input type="text" name="userName" [(ngModel)]="model.username" required>
+
+                </td>
+              </tr>
+              <tr>
+                <td>Password</td>
+                <td>
+                  <input type="text" name="password" [(ngModel)]="model.password" required>
+                  <label>*No se esta encriptando la contraseña al momento de guardar</label>
+                </td>
+              </tr>
+              <tr>
+                <td>Fullname</td>
+                <td><input type="text" name="userFullname" [(ngModel)]="model.fullname" required></td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>
+                  <input type="text" name="userAddress" [(ngModel)]="model.address" required>
+
+                </td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td>
+                  <input type="text" name="userPhone" [(ngModel)]="model.phone" required>
+                </td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>
+                  <input type="text" name="userEmail" [(ngModel)]="model.email" required>
+
+                </td>
+              </tr>
+              <tr>
+                <td>Age</td>
+                <td>
+                  <input type="text" name="userAge" [(ngModel)]="model.age" required>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Role
+                </td>
+                <td>
+                  <select name="select_roles" id="select_roles" [(ngModel)]="model.rolesId">
+                    <ng-container *ngFor="let role of roles">
+                      <option value="{{role?.id}}">{{role?.role}}</option>
+                    </ng-container>
+                  </select>
+                </td>
+              </tr>
+            </table>
+
+            <br />
+            <br />
+            <button type="submit">Enviar</button>
+          </form>
+        <br />
+        <br />
+        <div class="row" id="errorMessage" [hidden]="!showErrors">
+          <div class="col-md-12">
+            <p>
+              {{errorMessage}}
+            </p>
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>

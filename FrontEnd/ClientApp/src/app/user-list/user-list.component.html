@@ -1,0 +1,93 @@
+
+    <div>
+      <div>
+        <h2>Listado de usuarios</h2>
+
+        <ng-container *ngIf="userEditPerms == 'true' ">
+          <br />
+          <label>Para editar debes dar click sobre el icono del lapiz</label>
+        </ng-container>
+
+        <ng-container *ngIf="userDeletePerms == 'true' ">
+          <br />
+          <label>Para eliminar debes dar click sobre el icono de la papelera</label>
+          <br />
+          <label>La edición de la contraseña se realiza directamente en base de datos</label>
+        </ng-container>
+        <br />
+        <br />
+        <table id="dataTable" class="display" style="width:100%">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Username</th>
+              <th>Fullname</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Age</th>
+              <th>Role</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let user of users">
+              <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.fullname}}</td>
+
+                <td>{{user.address}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.email}}</td>
+
+                <td>{{user.age}}</td>
+                <td>{{user.roles.role}}</td>
+                <td>
+                  <ng-container *ngIf="userEditPerms == 'true' ">
+                    <a (click)="onEditUser(user.id)" title="Editar">
+                      <img style="width: 25px !important;" src="images/useredit.svg">
+                    </a>
+                  </ng-container>
+                  <ng-container *ngIf="userDeletePerms == 'true' ">
+                    <a (click)="onDeleteUser(user.id)" title="Eliminar">
+                      <img style="width: 25px !important;" src="images/trash.svg">
+                    </a>
+                  </ng-container>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+
+        </table>
+        <br />
+        <br />
+        <div class="row" id="messageNotification" [hidden]="!messageAlert">
+          <div class="col-md-12">
+            <p>
+              {{messageNotification}}
+            </p>
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <a type="button" id="summit" (click)="AcceptDelete()" class="btn btn-danger col-md-2 m-1">
+                Eliminar
+              </a>
+              <a type="button" href="javascript:void(0)" (click)="CancelDelete()" class="btn btn-secondary col-md-2 m-1">
+                Cancelar
+              </a>
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <div class="row" id="errorMessage" [hidden]="!showErrors">
+          <div class="col-md-12">
+            <p>
+              {{errorMessage}}
+            </p>
+          </div>
+        </div>
+        <br />
+      </div>
+      </div>

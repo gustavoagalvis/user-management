@@ -1,0 +1,83 @@
+
+    <div>
+      <div>
+        <h2>Editar usuario</h2>
+        <ng-container *ngIf="idUserEdit != null;">
+          <form name="form" (ngSubmit)="onEditUser()" #f="ngForm">
+            <table>
+              <tr>
+                <td>Username</td>
+                <td>
+                  <input type="text" value="{{user?.username}}" name="userName" [(ngModel)]="model.username" required>
+
+                </td>
+              </tr>
+              <tr>
+                <td>Fullname</td>
+                <td><input type="text" value="{{user?.fullname}}" name="userFullname" [(ngModel)]="model.fullname" required></td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>
+                  <input type="text" value="{{user?.address}}" name="userAddress" [(ngModel)]="model.address" required>
+
+                </td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td>
+                  <input type="text" value="{{user?.phone}}" name="userPhone" [(ngModel)]="model.phone" required>
+                </td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>
+                  <input type="text" value="{{user?.email}}" name="userEmail" [(ngModel)]="model.email" required>
+
+                </td>
+              </tr>
+              <tr>
+                <td>Age</td>
+                <td>
+                  <input type="text" value="{{user?.age}}" name="userAge" [(ngModel)]="model.age" required>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Role
+                </td>
+                <td>
+                  <select name="select_roles" id="select_roles" [(ngModel)]="model.rolesId">
+                    <ng-container *ngFor="let role of roles">
+                      <ng-container *ngIf="role.id == user.rolesId; else noSelected">
+                        <option selected value="{{role?.id}}">{{role?.role}}</option>
+                      </ng-container>
+                      <ng-template #noSelected>
+                        <option value="{{role?.id}}">{{role?.role}}</option>
+                      </ng-template>
+                    </ng-container>
+                  </select>
+                </td>
+              </tr>
+            </table>
+
+            <br />
+            <br />
+            <button type="submit">Enviar</button>
+            <br /><br />
+            <a class="nav-link text-dark" [routerLink]="['/user-list']">Volver a la lista</a>
+          </form>
+        </ng-container>
+        <br />
+        <br />
+        <div class="row" id="errorMessage" [hidden]="!showErrors">
+          <div class="col-md-12">
+            <p>
+              {{errorMessage}}
+            </p>
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
